@@ -170,6 +170,7 @@ type BlockchainExtendedInfo struct {
 	LogoLink                string
 	ExplorerLink            string
 	IsActive                bool `gorm:"default:true"`
+	IgnoreCase              bool `gorm:"default:false"`
 	AssetID                 sql.NullInt64
 	Asset                   Asset
 	ConsensusAlgorithmTags  []ConsensusAlgorithmTag  `gorm:"foreignKey:EntityID;references:ID"`
