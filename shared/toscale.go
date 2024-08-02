@@ -31,20 +31,20 @@ func (User) TableName() string {
 }
 
 type AdminPermission struct {
-	ID                       uint64 `gorm:"primaryKey"`
-	UserId                   uint64
-	User                     User `gorm:"foreignKey:ID;references:UserId"`
-	IsAvaliableTools         bool
-	IsAvaliableTerminals     bool
-	IsAvaliableUsers         bool
-	IsAvaliableBalances      bool
-	IsAvaliableDocumentation bool
-	IsAvaliableInsights      bool
-	IsAvaliableBalancer      bool
-	IsAvaliableNews          bool
-	IsAvaliableTwitter       bool
-	IsAvaliableForex         bool
-	IsAvaliableLanguages	 bool
+	ID                       	uint64 `gorm:"primaryKey"`
+	UserId                   	uint64
+	User                     	User `gorm:"foreignKey:ID;references:UserId"`
+	IsAvaliableTools         	bool
+	IsAvaliableTerminals     	bool
+	IsAvaliableUsers         	bool
+	IsAvaliableBackendTesting   bool
+	IsAvaliableDocumentation 	bool
+	IsAvaliableInsights      	bool
+	IsAvaliableBalancer      	bool
+	IsAvaliableNews          	bool
+	IsAvaliableTwitter       	bool
+	IsAvaliableForex         	bool
+	IsAvaliableLanguages	 	bool
 }
 
 type InstalledService struct {
