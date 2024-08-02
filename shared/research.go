@@ -217,6 +217,7 @@ type Forex struct {
 	High   float64
 	Close  float64
 	Date   int64
+	Type   string  `gorm:"-" json:"type"`
 }
 
 type ForexAsset struct {
