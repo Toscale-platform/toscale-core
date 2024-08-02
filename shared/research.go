@@ -33,7 +33,7 @@ type Asset struct {
 	FDV                     float64
 	CryptorankId            uint64                   `gorm:"uniqueIndex:cryptorank_unique"`
 	CoinmarketcapId         uint64                   `gorm:"uniqueIndex:coinmarketcap_unique"`
-	CoingeckoId             string                   `gorm:"uniqueIndex:coingecko_unique"`
+	CoingeckoId             sql.NullString           `gorm:"uniqueIndex:coingecko_unique"`
 	BuyLink                 string                   `gorm:"default:''"`
 	CountryTags             []CountryTag             `gorm:"foreignKey:EntityID;references:ID"`
 	Image60                 string                   `gorm:"default:''"`
@@ -153,7 +153,7 @@ type BlockchainExtendedInfo struct {
 	Slug                    *string        `gorm:"uniqueIndex:idx_uniq_blockchain_slug"`
 	CoinmarketcapId         *uint64        `gorm:"uniqueIndex:idx_uniq_blockchain_coinmarketcap"`
 	CoinmarketcapName       sql.NullString `gorm:"uniqueIndex:idx_uniq_blockchain_coinmarketcap_name"`
-	CoingeckoId             *string        `gorm:"uniqueIndex:idx_uniq_blockchain_coingecko"`
+	CoingeckoId             sql.NullString `gorm:"uniqueIndex:idx_uniq_blockchain_coingecko"`
 	LamaName                sql.NullString `gorm:"uniqueIndex:idx_uniq_lama_name"`
 	Symbol                  string
 	NativeToken             string
