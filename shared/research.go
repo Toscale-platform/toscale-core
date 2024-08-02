@@ -353,11 +353,10 @@ type Instrument struct {
 
 type WatchList struct {
 	ID       uint64 `gorm:"primaryKey;autoIncrement:true"`
-	Symbol   string `gorm:"uniqueIndex:idx_watch_list_uniq"`
 	UserID   uint64 `gorm:"uniqueIndex:idx_watch_list_uniq"`
-	Exchange string `gorm:"uniqueIndex:idx_watch_list_uniq"`
-	Flag     uint64 `gorm:"default:0"`
+	EntityID uint64 `gorm:"uniqueIndex:idx_watch_list_uniq"`
 	Type     string `sql:"type:ENUM('asset', 'pair')" gorm:"column:type"`
+	Flag     uint64 `gorm:"default:0"`
 }
 
 type HistoricTvlAll struct {
