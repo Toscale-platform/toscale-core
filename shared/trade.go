@@ -52,8 +52,10 @@ type TickerAssetsInfo struct {
 	TickerId       uint64 `gorm:"uniqueIndex:idx_uniq_ticker_id"`
 	BaseAsset      string `json:"baseAsset"`
 	BaseAssetId    uint64 `json:"baseAssetId"`
+	BaseAssetType  string `json:"baseAssetType" gorm:"default:'Crypto'"`
 	QuoteAsset     string `json:"quoteAsset"`
 	QuoteAssetId   uint64 `json:"quoteAssetId"`
+	QuoteAssetType string `json:"quoteAssetType" gorm:"default:'Crypto'"`
 	Symbol         string `json:"symbol"`
 	Exclude        bool   `json:"exclude"`
 	OnlyExcluded   bool   `json:"-" gorm:"-"`
