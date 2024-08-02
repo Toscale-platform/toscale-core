@@ -1,4 +1,4 @@
-module toscale-core
+module github.com/Toscale-platform/toscale-core
 
 go 1.22
 
