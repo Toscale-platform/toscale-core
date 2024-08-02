@@ -29,6 +29,8 @@ type Asset struct {
 	Rank                    uint64
 	CirculatingSupply       float64
 	MaxSupply               float64
+	TotalSupply             float64
+	FDV                     float64
 	CryptorankId            uint64                   `gorm:"uniqueIndex:cryptorank_unique"`
 	CoinmarketcapId         uint64                   `gorm:"uniqueIndex:coinmarketcap_unique"`
 	CoingeckoId             string                   `gorm:"uniqueIndex:coingecko_unique"`
