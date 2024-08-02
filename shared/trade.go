@@ -64,3 +64,64 @@ type Candle struct {
 	Time         int64
 	IsBuyerMaker bool
 }
+type AggregatedAsset struct {
+	Symbol     string  `json:"symbol"`
+	SymbolId   uint64  `json:"symbolId" gorm:"uniqueIndex:idx_uniq_symbol_id"`
+	Price      float64 `json:"price"`
+	High       float64 `json:"high"`
+	Low        float64 `json:"low"`
+	Percentage float64 `json:"percentage"`
+	Volume     float64 `json:"volume"`
+	MarketCap  float64 `json:"marketCap"`
+}
+type ExchangesHistory struct {
+	Exchange   string  `json:"exchange"`
+	ExchangeID uint64  `gorm:"uniqueIndex:exchange_history_unique" json:"exchangeId"`
+	Resolution uint64  `gorm:"uniqueIndex:exchange_history_unique" json:"resolution"`
+	Timestamp  uint64  `gorm:"uniqueIndex:exchange_history_unique" json:"timestamp"`
+	Volume     float64 `json:"volume"`
+}
+type GeneralDataHistory struct {
+	Marketcap                  float64 `json:"marketcap"`
+	MarketcapChange            float64 `json:"marketcapChange"`
+	MarketcapChangePerc        float64 `json:"marketcapChangePerc"`
+	Volume                     float64 `json:"volume"`
+	VolumeChange               float64 `json:"volumeChange"`
+	VolumeChangePerc           float64 `json:"volumeChangePerc"`
+	DefiVolume                 float64 `json:"defiVolume"`
+	DefiVolumeChange           float64 `json:"defiVolumeChange"`
+	DefiVolumeChangePerc       float64 `json:"defiVolumeChangePerc"`
+	StableVolume               float64 `json:"stableVolume"`
+	StableVolumeChange         float64 `json:"stableVolumeChange"`
+	StableVolumeChangePerc     float64 `json:"stableVolumeChangePerc"`
+	BitcoinMarketcap           float64 `json:"bitcoinMarketcap"`
+	BitcoinMarketcapChange     float64 `json:"bitcoinMarketcapChange"`
+	BitcoinMarketcapChangePerc float64 `json:"bitcoinMarketcapChangePerc"`
+	BitcoinDominance           float64 `json:"bitcoinDominance"`
+	BitcoinDominanceChange     float64 `json:"bitcoinDominanceChange"`
+	Timestamp                  uint64  `json:"timestamp"`
+}
+type DexOrganizedTickers struct {
+	ID               uint64           `json:"id" gorm:"primaryKey"`
+	Exchange         string           `json:"-" gorm:"uniqueIndex:idx_uniq_ticker"`
+	ExchangeID       int64            `json:"exchangeId"`
+	Symbol           string           `json:"symbol" gorm:"uniqueIndex:idx_uniq_ticker"`
+	Timestamp        uint64           `json:"timestamp"`
+	Datetime         string           `json:"datetime"`
+	High             float64          `json:"high"`
+	Low              float64          `json:"low"`
+	Bid              float64          `json:"bid"`
+	BidVolume        float64          `json:"bidVolume"`
+	Ask              float64          `json:"ask"`
+	AskVolume        float64          `json:"askVolume"`
+	Vwap             float64          `json:"vwap"`
+	Open             float64          `json:"open"`
+	Close            float64          `json:"close"`
+	Last             float64          `json:"last"`
+	PreviousClose    float64          `json:"previousClose"`
+	Change           float64          `json:"change"`
+	Percentage       float64          `json:"percentage"`
+	BaseVolume       float64          `json:"baseVolume"`
+	QuoteVolume      float64          `json:"quoteVolume"`
+	CreatedAt        uint64           `json:"createdAt" gorm:"autoCreateTime:milli"`
+}
