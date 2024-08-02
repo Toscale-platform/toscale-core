@@ -1,5 +1,26 @@
 package shared
 
+import (
+	"errors"
+
+	"gorm.io/gorm"
+)
+
+func (ticker *OrganizedTickers) BeforeCreate(tx *gorm.DB) (err error) {
+	var existingTicker OrganizedTickers
+	result := tx.Where("symbol = ? AND exchange = ?", ticker.Symbol, ticker.Exchange).First(&existingTicker)
+
+	if result.Error == nil || result.RowsAffected > 0 {
+		ticker.ID = existingTicker.ID
+	} else if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+		return tx.Raw("SELECT nextval('organized_tickers_id_seq')").Scan(&ticker.ID).Error
+	} else {
+		return result.Error
+	}
+
+	return nil
+}
+
 type OrganizedTickers struct {
 	ID               uint64           `json:"id" gorm:"primaryKey"`
 	Exchange         string           `json:"-" gorm:"uniqueIndex:idx_uniq_ticker"`
@@ -102,26 +123,26 @@ type GeneralDataHistory struct {
 	Timestamp                  uint64  `json:"timestamp"`
 }
 type DexOrganizedTickers struct {
-	ID               uint64           `json:"id" gorm:"primaryKey"`
-	Exchange         string           `json:"-" gorm:"uniqueIndex:idx_uniq_ticker"`
-	ExchangeID       int64            `json:"exchangeId"`
-	Symbol           string           `json:"symbol" gorm:"uniqueIndex:idx_uniq_ticker"`
-	Timestamp        uint64           `json:"timestamp"`
-	Datetime         string           `json:"datetime"`
-	High             float64          `json:"high"`
-	Low              float64          `json:"low"`
-	Bid              float64          `json:"bid"`
-	BidVolume        float64          `json:"bidVolume"`
-	Ask              float64          `json:"ask"`
-	AskVolume        float64          `json:"askVolume"`
-	Vwap             float64          `json:"vwap"`
-	Open             float64          `json:"open"`
-	Close            float64          `json:"close"`
-	Last             float64          `json:"last"`
-	PreviousClose    float64          `json:"previousClose"`
-	Change           float64          `json:"change"`
-	Percentage       float64          `json:"percentage"`
-	BaseVolume       float64          `json:"baseVolume"`
-	QuoteVolume      float64          `json:"quoteVolume"`
-	CreatedAt        uint64           `json:"createdAt" gorm:"autoCreateTime:milli"`
+	ID            uint64  `json:"id" gorm:"primaryKey"`
+	Exchange      string  `json:"-" gorm:"uniqueIndex:idx_uniq_ticker"`
+	ExchangeID    int64   `json:"exchangeId"`
+	Symbol        string  `json:"symbol" gorm:"uniqueIndex:idx_uniq_ticker"`
+	Timestamp     uint64  `json:"timestamp"`
+	Datetime      string  `json:"datetime"`
+	High          float64 `json:"high"`
+	Low           float64 `json:"low"`
+	Bid           float64 `json:"bid"`
+	BidVolume     float64 `json:"bidVolume"`
+	Ask           float64 `json:"ask"`
+	AskVolume     float64 `json:"askVolume"`
+	Vwap          float64 `json:"vwap"`
+	Open          float64 `json:"open"`
+	Close         float64 `json:"close"`
+	Last          float64 `json:"last"`
+	PreviousClose float64 `json:"previousClose"`
+	Change        float64 `json:"change"`
+	Percentage    float64 `json:"percentage"`
+	BaseVolume    float64 `json:"baseVolume"`
+	QuoteVolume   float64 `json:"quoteVolume"`
+	CreatedAt     uint64  `json:"createdAt" gorm:"autoCreateTime:milli"`
 }
