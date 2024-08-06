@@ -217,7 +217,7 @@ type Forex struct {
 	High   float64
 	Close  float64
 	Date   int64
-	Type   string  `gorm:"-" json:"type"`
+	Type   string `gorm:"-" json:"type"`
 }
 
 type ForexAsset struct {
@@ -398,6 +398,8 @@ type ResearchPair struct {
 	QuoteAssetId   uint64   `json:"quoteAssetId" gorm:"uniqueIndex:pair_idx"`
 	BaseAssetType  string   `json:"baseAssetType" gorm:"uniqueIndex:pair_idx"`
 	QuoteAssetType string   `json:"qouteAssetType" gorm:"uniqueIndex:pair_idx"`
+	BaseAssetSlug  string   `json:"baseAssetSlug"`
+	QuoteAssetSlug string   `json:"quoteAssetSlug"`
 	MarketType     string   `json:"marketType"`
 	ExchangeID     uint64   `gorm:"uniqueIndex:pair_idx"`
 	Exchange       Exchange `gorm:"foreignKey:ExchangeID;references:ID"`
