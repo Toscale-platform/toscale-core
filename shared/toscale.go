@@ -1,5 +1,7 @@
 package shared
 
+import "database/sql"
+
 type User struct {
 	ID                   uint64 `gorm:"primaryKey"`
 	Name                 string
@@ -8,22 +10,22 @@ type User struct {
 	Avatar               string
 	Password             string
 	CreatedAt            uint64 `gorm:"column:createdAt"`
-	Referral             uint64
+	Referral             sql.Null[uint64]
 	Lang                 string
-	EmailConfirmed       bool   `gorm:"column:emailConfirm"`
-	TwoFaSecret          string `gorm:"column:twoFaSecret"`
-	ContainerId          string `gorm:"column:containerId"`
-	TaskId               string `gorm:"column:taskId"`
-	TwoFaEnabled         bool   `gorm:"column:twoFaEnabled"`
-	LastOnline           uint64 `gorm:"column:lastOnline"`
-	Verified             bool   `gorm:"column:verified"`
-	NewsLang             string `gorm:"column:newslang"`
-	AssetId              uint64 `gorm:"column:assetId"`
-	AvaliableMarketplace bool   `gorm:"column:avaliableMarketplace"`
-	AvaliablePortfolio   bool   `gorm:"column:avaliablePortfolio"`
-	AvaliableTerminal    bool   `gorm:"column:avaliableTerminal"`
-	AvaliableLending     bool   `gorm:"column:avaliableLending"`
-	AvaliableAssist      bool   `gorm:"column:avaliableAssist"`
+	EmailConfirmed       bool             `gorm:"column:emailConfirm"`
+	TwoFaSecret          string           `gorm:"column:twoFaSecret"`
+	ContainerId          sql.NullString   `gorm:"column:containerId"`
+	TaskId               sql.NullString   `gorm:"column:taskId"`
+	TwoFaEnabled         bool             `gorm:"column:twoFaEnabled"`
+	LastOnline           uint64           `gorm:"column:lastOnline"`
+	Verified             bool             `gorm:"column:verified"`
+	NewsLang             string           `gorm:"column:newslang"`
+	AssetId              sql.Null[uint64] `gorm:"column:assetId"`
+	AvaliableMarketplace bool             `gorm:"column:avaliableMarketplace"`
+	AvaliablePortfolio   bool             `gorm:"column:avaliablePortfolio"`
+	AvaliableTerminal    bool             `gorm:"column:avaliableTerminal"`
+	AvaliableLending     bool             `gorm:"column:avaliableLending"`
+	AvaliableAssist      bool             `gorm:"column:avaliableAssist"`
 }
 
 func (User) TableName() string {
