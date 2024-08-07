@@ -1,29 +1,29 @@
 package shared
 
 type User struct {
-	ID             uint64 `gorm:"primaryKey"`
-	Name           string
-	Email          string
-	Role           string
-	Avatar         string
-	Password       string
-	CreatedAt      uint64 `gorm:"column:createdAt"`
-	Referal        uint64
-	Lang           string
-	EmailConfirmed bool   `gorm:"column:emailConfirm"`
-	TwoFaSecret    string `gorm:"column:twoFaSecret"`
-	ContainerId    string `gorm:"column:containerId"`
-	TaskId		   string `gorm:"column:taskId"`
-	TwoFaEnabled   bool   `gorm:"column:twoFaEnabled"`
-	LastOnline     			uint64 `gorm:"column:lastOnline"`
-	Verified       			bool   `gorm:"column:verified"`
-	NewsLang	   			string `gorm:"column:newsLang"`
-	AssetId		   			uint64 `gorm:"column:assetId"`
-	AvaliableMarketplace 	bool   `gorm:"column:avaliableMarketplace"`
-	AvaliablePortfolio		bool   `gorm:"column:avaliablePortfolio"`
-	AvaliableTerminal		bool   `gorm:"column:avaliableTerminal"`
-	AvaliableLending 		bool   `gorm:"column:avaliableLending"`
-	AvaliableAssist			bool   `gorm:"column:avaliableAssist"`
+	ID                   uint64 `gorm:"primaryKey"`
+	Name                 string
+	Email                string
+	Role                 string
+	Avatar               string
+	Password             string
+	CreatedAt            uint64 `gorm:"column:createdAt"`
+	Referral             uint64
+	Lang                 string
+	EmailConfirmed       bool   `gorm:"column:emailConfirm"`
+	TwoFaSecret          string `gorm:"column:twoFaSecret"`
+	ContainerId          string `gorm:"column:containerId"`
+	TaskId               string `gorm:"column:taskId"`
+	TwoFaEnabled         bool   `gorm:"column:twoFaEnabled"`
+	LastOnline           uint64 `gorm:"column:lastOnline"`
+	Verified             bool   `gorm:"column:verified"`
+	NewsLang             string `gorm:"column:newsLang"`
+	AssetId              uint64 `gorm:"column:assetId"`
+	AvaliableMarketplace bool   `gorm:"column:avaliableMarketplace"`
+	AvaliablePortfolio   bool   `gorm:"column:avaliablePortfolio"`
+	AvaliableTerminal    bool   `gorm:"column:avaliableTerminal"`
+	AvaliableLending     bool   `gorm:"column:avaliableLending"`
+	AvaliableAssist      bool   `gorm:"column:avaliableAssist"`
 }
 
 func (User) TableName() string {
@@ -31,20 +31,20 @@ func (User) TableName() string {
 }
 
 type AdminPermission struct {
-	ID                       	uint64 `gorm:"primaryKey"`
-	UserId                   	uint64
-	User                     	User `gorm:"foreignKey:ID;references:UserId"`
-	IsAvaliableTools         	bool
-	IsAvaliableTerminals     	bool
-	IsAvaliableUsers         	bool
-	IsAvaliableBackendTesting   bool
-	IsAvaliableDocumentation 	bool
-	IsAvaliableInsights      	bool
-	IsAvaliableBalancer      	bool
-	IsAvaliableNews          	bool
-	IsAvaliableTwitter       	bool
-	IsAvaliableForex         	bool
-	IsAvaliableLanguages	 	bool
+	ID                        uint64 `gorm:"primaryKey"`
+	UserId                    uint64
+	User                      User `gorm:"foreignKey:ID;references:UserId"`
+	IsAvaliableTools          bool
+	IsAvaliableTerminals      bool
+	IsAvaliableUsers          bool
+	IsAvaliableBackendTesting bool
+	IsAvaliableDocumentation  bool
+	IsAvaliableInsights       bool
+	IsAvaliableBalancer       bool
+	IsAvaliableNews           bool
+	IsAvaliableTwitter        bool
+	IsAvaliableForex          bool
+	IsAvaliableLanguages      bool
 }
 
 type InstalledService struct {
