@@ -6,7 +6,7 @@ type User struct {
 	ID                   uint64 `gorm:"primaryKey"`
 	Name                 string
 	Email                string
-	Role                 string
+	Role                 string `gorm:"default:user"`
 	Avatar               string
 	Password             string
 	CreatedAt            uint64 `gorm:"column:createdAt"`
