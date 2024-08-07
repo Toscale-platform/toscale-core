@@ -17,7 +17,7 @@ type User struct {
 	TwoFaEnabled         bool   `gorm:"column:twoFaEnabled"`
 	LastOnline           uint64 `gorm:"column:lastOnline"`
 	Verified             bool   `gorm:"column:verified"`
-	NewsLang             string `gorm:"column:newsLang"`
+	NewsLang             string `gorm:"column:newslang"`
 	AssetId              uint64 `gorm:"column:assetId"`
 	AvaliableMarketplace bool   `gorm:"column:avaliableMarketplace"`
 	AvaliablePortfolio   bool   `gorm:"column:avaliablePortfolio"`
