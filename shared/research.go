@@ -361,9 +361,8 @@ type WatchList struct {
 }
 
 type HistoricTvlAll struct {
-	Timestamp         uint64 `gorm:"uniqueIndex:idx_historic_name"`
 	Name              string `gorm:"uniqueIndex:idx_historic_name"`
-	Type              string
+	Timestamp         uint64 `gorm:"uniqueIndex:idx_historic_name"`
 	TotalUsdLiquidity float64
 }
 
