@@ -33,7 +33,7 @@ func (User) TableName() string {
 type AdminPermission struct {
 	ID                       	uint64 `gorm:"primaryKey"`
 	UserId                   	uint64
-	User                     	User `gorm:"foreignKey:ID;references:UserId"`
+	User                     	User `gorm:"foreignKey:UserID;references:ID"`
 	IsAvaliableTools         	bool
 	IsAvaliableTerminals     	bool
 	IsAvaliableUsers         	bool
