@@ -35,7 +35,7 @@ func (User) TableName() string {
 
 type AdminPermission struct {
 	ID                       	uint64 `gorm:"primaryKey"`
-	UserId                   	uint64
+	UserId                   	uint64 `gorm:"uniqueIndex:ap_uniq_user_key"`
 	IsAvaliableTools         	bool
 	IsAvaliableTerminals     	bool
 	IsAvaliableUsers         	bool
