@@ -26,6 +26,7 @@ type User struct {
 	AvaliableTerminal    bool             `gorm:"column:avaliableTerminal"`
 	AvaliableLending     bool             `gorm:"column:avaliableLending"`
 	AvaliableAssist      bool             `gorm:"column:avaliableAssist"`
+	AdmPermissions       AdminPermission  `gorm:"foreignKey:UserId;references:ID"`
 }
 
 func (User) TableName() string {
@@ -35,7 +36,6 @@ func (User) TableName() string {
 type AdminPermission struct {
 	ID                       	uint64 `gorm:"primaryKey"`
 	UserId                   	uint64
-	User                     	User `gorm:"foreignKey:UserID;references:ID"`
 	IsAvaliableTools         	bool
 	IsAvaliableTerminals     	bool
 	IsAvaliableUsers         	bool
