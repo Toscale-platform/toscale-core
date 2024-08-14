@@ -1,26 +1,5 @@
 package shared
 
-import (
-	"errors"
-
-	"gorm.io/gorm"
-)
-
-func (ticker *OrganizedTickers) BeforeCreate(tx *gorm.DB) (err error) {
-	var existingTicker OrganizedTickers
-	result := tx.Where("symbol = ? AND exchange = ?", ticker.Symbol, ticker.Exchange).First(&existingTicker)
-
-	if result.Error == nil || result.RowsAffected > 0 {
-		ticker.ID = existingTicker.ID
-	} else if errors.Is(result.Error, gorm.ErrRecordNotFound) {
-		return tx.Raw("SELECT nextval('organized_tickers_id_seq')").Scan(&ticker.ID).Error
-	} else {
-		return result.Error
-	}
-
-	return nil
-}
-
 type OrganizedTickers struct {
 	ID               uint64           `json:"id" gorm:"primaryKey"`
 	Exchange         string           `json:"-" gorm:"uniqueIndex:idx_uniq_ticker"`
