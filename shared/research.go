@@ -325,7 +325,7 @@ type Exchange struct {
 	FuturesPairs     uint64 `gorm:"default:0"`
 	DeliveryPairs    uint64 `gorm:"default:0"`
 	IsHidden         bool   `gorm:"default:false"`
-	ParentExchangeID uint64
+	ParentExchangeID *uint64
 	InstrumentID     uint64           `gorm:"default:1"`
 	DescriptionRu    string           `gorm:"default:''"`
 	DescriptionEn    string           `gorm:"default:''"`
@@ -334,7 +334,7 @@ type Exchange struct {
 	ReferalLink      string           `gorm:"default:''"`
 	AuditTags        []AuditTag       `gorm:"foreignKey:EntityID;references:ID"`
 	SocialMediaTags  []SocialMediaTag `gorm:"foreignKey:EntityID;references:ID"`
-	AssetID          uint64
+	AssetID          *uint64
 	CountryTags      []CountryTag `gorm:"foreignKey:EntityID;references:ID"`
 	CreatedAt        uint64       `gorm:"deault:0"`
 	Technology       string       `gorm:"default:'CeFi'"`
