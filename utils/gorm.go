@@ -9,7 +9,7 @@ import (
 	"gorm.io/gorm/schema"
 )
 
-func NewGormConn(db, dbschema, user, pswd, host string, port int) (conn *gorm.DB, err error) {
+func NewGormConn(db, dbschema, user, pswd, host string, port int, disableForeignKeyConstraintWhenMigrating bool) (conn *gorm.DB, err error) {
 
 	if len(dbschema) == 0 {
 		dbschema = "public"
@@ -22,6 +22,7 @@ func NewGormConn(db, dbschema, user, pswd, host string, port int) (conn *gorm.DB
 			TablePrefix:   fmt.Sprintf("%s.", dbschema),
 			SingularTable: false,
 		},
+		DisableForeignKeyConstraintWhenMigrating: disableForeignKeyConstraintWhenMigrating,
 	})
 
 	if err != nil {
