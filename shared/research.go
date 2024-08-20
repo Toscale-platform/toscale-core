@@ -47,10 +47,34 @@ type Asset struct {
 	AuditTags               []AuditTag               `gorm:"foreignKey:EntityID;references:ID"`
 	IndustryTags            []IndustryTag            `gorm:"foreignKey:EntityID;references:ID"`
 	ContractTags            []ContractTag            `gorm:"foreignKey:EntityID;references:ID"`
+	Percentages             PercentageChange         `gorm:"foreignKey:EntityID;references:ID"`
 }
 
 func (Asset) TableName() string {
 	return "currencies"
+}
+
+type PercentageChange struct {
+	EntityID             uint64 `gorm:"uniqueIndex:idx_entity_perc_change"`
+	PercentChange1m      float64
+	PercentChange3m      float64
+	PercentChange5m      float64
+	PercentChange15m     float64
+	PercentChange30m     float64
+	PercentChange45m     float64
+	PercentChange1h      float64
+	PercentChange2h      float64
+	PercentChange3h      float64
+	PercentChange4h      float64
+	PercentChange6h      float64
+	PercentChange12h     float64
+	PercentChange1d      float64
+	PercentChange3d      float64
+	PercentChange1w      float64
+	PercentChange1Month  float64
+	PercentChange3Month  float64
+	PercentChange6Month  float64
+	PercentChange12Month float64
 }
 
 type CountryTag struct {
