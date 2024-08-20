@@ -75,6 +75,7 @@ type AggregatedAsset struct {
 	Percentage float64 `json:"percentage"`
 	Volume     float64 `json:"volume"`
 	MarketCap  float64 `json:"marketCap"`
+	FDV        float64 `json:"fdv"`
 }
 type ExchangesHistory struct {
 	Exchange   string  `json:"exchange"`
