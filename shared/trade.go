@@ -1,5 +1,66 @@
 package shared
 
+type FuturesTicker struct {
+	ID               			uint64           `json:"id" gorm:"primaryKey"`
+	Exchange         			string           `json:"-" gorm:"uniqueIndex:idx_uniq_ticker"`
+	ExchangeID       			int64            `json:"exchangeId"`
+	Symbol           			string           `json:"symbol" gorm:"uniqueIndex:idx_uniq_ticker"`
+	Timestamp        			uint64           `json:"timestamp"`
+	Datetime         			string           `json:"datetime"`
+	Open             			float64          `json:"open"`
+	Close            			float64          `json:"close"`
+	High             			float64          `json:"high"`
+	Low              			float64          `json:"low"`
+	Last            	 		float64          `json:"last"`
+	Change    		       		float64          `json:"change"`
+	Percentage    				float64          `json:"percentage"`
+	BaseVolume       			float64          `json:"baseVolume"`
+	QuoteVolume      			float64          `json:"quoteVolume"`
+}
+
+type IndexMark struct {
+	Basis						float64 `json:"basis"`
+	MarkPrice		 			float64 `json:"markPrice"`
+	IndexPrice		 			float64 `json:"indexPrice"`
+	LastFundingRate 			float64 `json:"lastFundingRate"`
+	NextFundingTime				uint64 	`json:"nextFundingTime"`
+	InterestRate				float64 `json:"interestRate"`
+	Timestamp					uint64 	`json:"timestamp"`
+}
+
+type FundingInfo struct {
+	AdjustedFundingRateCap  	float64 `json:"adjustedFundingRateCap"`
+    AdjustedFundingRateFloor 	float64 `json:"adjustedFundingRateFloor"`
+    FundingIntervalHours		uint64 	`json:"fundingIntervalHours"`
+}
+
+type Interest struct {
+	OpenInterest	float64				`json:"openInterest"`
+	Timestamp		uint64				`json:"timestamp"`
+}
+
+type TakerBuySell struct {
+	BuySellRatio				float64 `json:"buySellRatio"`
+	BuyVol	 					float64 `json:"buyVol"`
+	SellVol				 		float64 `json:"sellVol"`
+	Timestamp					uint64	`json:"timestamp"`
+}
+
+type FuturesPairInfo struct {
+	IndexMark			IndexMark
+	Interest			Interest
+	TakerBuySell		TakerBuySell
+	FundingInfo			FundingInfo
+}
+
+// type PerpetualTickerAssetInfo struct {
+
+// }
+
+type FuturesTickerAssetsInfo struct {
+	TickerAssetsInfo
+}
+
 type OrganizedTickers struct {
 	ID               uint64           `json:"id" gorm:"primaryKey"`
 	Exchange         string           `json:"-" gorm:"uniqueIndex:idx_uniq_ticker"`
