@@ -31,8 +31,8 @@ type Asset struct {
 	MaxSupply               float64
 	TotalSupply             float64
 	FDV                     float64
-	CryptorankId            uint64                   `gorm:"uniqueIndex:cryptorank_unique"`
-	CoinmarketcapId         uint64                   `gorm:"uniqueIndex:coinmarketcap_unique"`
+	CryptorankId            sql.NullInt64 			 `gorm:"uniqueIndex:cryptorank_unique"`
+	CoinmarketcapId         sql.NullInt64            `gorm:"uniqueIndex:coinmarketcap_unique"`
 	CoingeckoId             sql.NullString           `gorm:"uniqueIndex:coingecko_unique"`
 	BuyLink                 string                   `gorm:"default:''"`
 	CountryTags             []CountryTag             `gorm:"foreignKey:EntityID;references:ID"`
